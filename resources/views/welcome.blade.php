@@ -36,14 +36,22 @@
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label for="email" class="font-weigth-bold">Email Address</label>
-                                    <input type="email" name="email" id="email" class="form-control">
+                                    <input type="email" name="email" id="email"
+                                        class="form-control @error('email')
+                                        is-invalid
+                                    @enderror">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="password" class="font-weigth-bold">Password</label>
                                     <input type="password" name="password" id="password" class="form-control">
                                 </div>
                                 <div class="d-flex">
-                                    <div>No Account? <a href="{{ route('register.view')}}">Register.</a> </div>
+                                    <div>No Account? <a href="{{ route('register.view') }}">Register.</a> </div>
                                     <button class="btn btn-primary">Submit</button>
                                 </div>
                             </form>

@@ -16,6 +16,10 @@ class AuthController extends Controller
         if (Auth::attempt($request->validated())) {
             return redirect()->route('contacts.index');
         }
+
+        return back()->withErrors([
+            'email' => 'Invalid credentials'
+        ]);
     }
 
     public function registerView()
@@ -36,7 +40,8 @@ class AuthController extends Controller
         return redirect()->route('thank-you');
     }
 
-    public function logout() {
+    public function logout()
+    {
         Auth::logout();
 
         return redirect("/");
